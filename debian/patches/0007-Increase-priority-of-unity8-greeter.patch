@@ -1,0 +1,20 @@
+From: John Salatas <jsalatas@gmail.com>
+Date: Tue, 11 Jul 2017 21:27:45 -0700
+Subject: Increase priority of unity8-greeter
+
+---
+ data/CMakeLists.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/data/CMakeLists.txt b/data/CMakeLists.txt
+index ff16abc..090d57f 100644
+--- a/data/CMakeLists.txt
++++ b/data/CMakeLists.txt
+@@ -20,6 +20,7 @@ install(FILES
+ install(FILES
+     51-unity8-greeter.conf
+     DESTINATION ${CMAKE_INSTALL_DATADIR}/lightdm/lightdm.conf.d
++    RENAME 99-unity8-greeter.conf
+     )
+ 
+ # install dash icon
