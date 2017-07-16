@@ -27,7 +27,7 @@ GETTEXT_FILES=$(mktemp --tmpdir unity8.lst.XXXXX)
 trap 'rm -f "$GETTEXT_FILES"' EXIT
 cd ..
 find \( -name '*.h' -o -name '*.cpp' -o -name '*.qml' -o -name '*.js' \) \
-    -a ! \( -path './debian/*' -o -path './builddir/*' -o -path './build/*' -o -path './tests/*' -o -path './.bzr/*' \) | sort \
+    -a ! \( -path './debian/*' -o -path './builddir/*' -o -path './build/*' -o -path './tests/*' -o -path './.git/*' \) | sort \
 > $GETTEXT_FILES
 
 # Generate pot from our list
@@ -47,7 +47,7 @@ xgettext \
     --keyword=tag:1c,2 \
     --keyword=dgettext_datetime \
     --package-name="unity8" \
-    --copyright-holder="Canonical Ltd." \
+    --copyright-holder="Yunit Project" \
     --from-code="UTF-8"
 
 echo "$PROGNAME: $PO_DIR/unity8.pot updated"
