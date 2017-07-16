@@ -1,0 +1,9 @@
+[main]
+host = https://www.transifex.com
+
+[yunit.unity8]
+file_filter = po/<lang>.po
+source_file = po/unity8.pot
+source_lang = en
+type = PO
+
