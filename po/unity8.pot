@@ -1,5 +1,5 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Canonical Ltd.
+# Copyright (C) YEAR Yunit Project
 # This file is distributed under the same license as the unity8 package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unity8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-04 22:56+0000\n"
+"POT-Creation-Date: 2017-07-15 17:29-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -132,7 +132,7 @@ msgid "Keyboard Shortcuts"
 msgstr ""
 
 #: qml/Components/KeyboardShortcutsOverlay.qml:55
-msgid "Unity 8"
+msgid "Yunit"
 msgstr ""
 
 #: qml/Components/KeyboardShortcutsOverlay.qml:62
