@@ -17,4 +17,4 @@ For help with translations do a pull request with the changes that you made to t
 * And we even have a Freenode irc at #yunit.
 * Here there is our [Forum](https://forum.yunit.io/index.php) 
 
-### [Frequently Asked Questions](https://github.com/yunit-io/yunit/wiki/FAQ) ###
+### [Frequently Asked Questions](https://yunit.io/faq/) ###
