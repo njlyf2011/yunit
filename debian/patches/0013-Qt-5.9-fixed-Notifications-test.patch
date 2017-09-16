@@ -1,0 +1,21 @@
+From: John Salatas <jsalatas@gmail.com>
+Date: Sat, 19 Aug 2017 17:41:36 -0700
+Subject: Qt 5.9: fixed Notifications test
+
+---
+ tests/qmltests/Notifications/tst_Notifications.qml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tests/qmltests/Notifications/tst_Notifications.qml b/tests/qmltests/Notifications/tst_Notifications.qml
+index cb1bd17..3af3a99 100644
+--- a/tests/qmltests/Notifications/tst_Notifications.qml
++++ b/tests/qmltests/Notifications/tst_Notifications.qml
+@@ -683,7 +683,7 @@ Item {
+                         // click to collapse
+                         tryCompareFunction(function() { mouseClick(comboButton, comboButton.width / 2, comboButton.height / 2); return !comboButton.expanded; }, true);
+                     } else {
+-                        mouseClick(buttonCancel)
++                        tryCompareFunction(function() { mouseClick(buttonCancel); return actionSpy.signalArguments.length > 0; }, true);
+                         compare(actionSpy.signalArguments[0][0], data.n.actions.data(1, ActionModel.RoleActionId), "got wrong id for negative action")
+                     }
+                 }

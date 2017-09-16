@@ -1,0 +1,20 @@
+From: John Salatas <jsalatas@gmail.com>
+Date: Sun, 20 Aug 2017 02:24:35 -0700
+Subject: Qt 5.9: fixed PhoneStage test
+
+---
+ tests/qmltests/Stage/tst_PhoneStage.qml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/tests/qmltests/Stage/tst_PhoneStage.qml b/tests/qmltests/Stage/tst_PhoneStage.qml
+index e139ddb..04853d0 100644
+--- a/tests/qmltests/Stage/tst_PhoneStage.qml
++++ b/tests/qmltests/Stage/tst_PhoneStage.qml
+@@ -278,6 +278,7 @@ Item {
+                 var endY = startY;
+                 var endX = units.gu(2);
+                 touchFlick(stage, startX, startY, endX, endY, true, true, units.gu(10), 50)
++                wait(100)
+             }
+ 
+             console.log("clicking app", data.index, "(", appId, ")")

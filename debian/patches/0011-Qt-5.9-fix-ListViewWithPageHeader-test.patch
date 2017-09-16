@@ -1,0 +1,50 @@
+From: John Salatas <jsalatas@gmail.com>
+Date: Sat, 5 Aug 2017 14:56:23 -0700
+Subject: Qt 5.9: fix ListViewWithPageHeader test
+
+---
+ tests/plugins/Dash/listviewwithpageheadertest.cpp | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
+
+diff --git a/tests/plugins/Dash/listviewwithpageheadertest.cpp b/tests/plugins/Dash/listviewwithpageheadertest.cpp
+index ef25ad8..5912966 100644
+--- a/tests/plugins/Dash/listviewwithpageheadertest.cpp
++++ b/tests/plugins/Dash/listviewwithpageheadertest.cpp
+@@ -58,17 +58,16 @@ private:
+             const qreal jump = 25;
+             while (lvwph->contentY() + jump < dest) {
+                 lvwph->setContentY(lvwph->contentY() + jump);
+-                QTest::qWait(1);
++                QTest::qWait(10);
+             }
+         } else {
+             const qreal jump = -25;
+             while (lvwph->contentY() + jump > dest) {
+                 lvwph->setContentY(lvwph->contentY() + jump);
+-                QTest::qWait(1);
++                QTest::qWait(10);
+             }
+         }
+         lvwph->setContentY(dest);
+-        QTest::qWait(1);
+     }
+ 
+     void scrollToTop()
+@@ -80,7 +79,7 @@ private:
+             } else {
+                 lvwph->setContentY(lvwph->contentY() - 1);
+             }
+-            QTest::qWait(1);
++            QTest::qWait(10);
+         }
+     }
+ 
+@@ -93,7 +92,7 @@ private:
+             } else {
+                 lvwph->setContentY(lvwph->contentY() + 1);
+             }
+-            QTest::qWait(1);
++            QTest::qWait(10);
+         }
+     }
+ 

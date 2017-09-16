@@ -1,0 +1,35 @@
+From: John Salatas <jsalatas@gmail.com>
+Date: Sun, 13 Aug 2017 16:59:55 -0700
+Subject: Qt 5.9: MenuBar
+
+---
+ qml/ApplicationMenus/MenuBar.qml | 15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
+
+diff --git a/qml/ApplicationMenus/MenuBar.qml b/qml/ApplicationMenus/MenuBar.qml
+index c074e21..fd1cf34 100644
+--- a/qml/ApplicationMenus/MenuBar.qml
++++ b/qml/ApplicationMenus/MenuBar.qml
+@@ -272,11 +272,18 @@ Item {
+         onDoubleClicked: root.doubleClicked(mouse)
+ 
+         Mouse.ignoreSynthesizedEvents: true
++        property real oldPosX: mouseX
++        property real oldPosY: mouseY
++
+         Mouse.onPositionChanged: {
+-            root.positionChanged(mouse);
+-            moved = root.windowMoving;
+-            if (d.currentItem) {
+-                updateCurrentItemFromPosition(Qt.point(mouse.x, mouse.y))
++            if(oldPosX != mouse.x || oldPosY != mouse.y) {
++                oldPosX = mouse.x ;
++                oldPosY = mouse.y;
++                root.positionChanged(mouse);
++                moved = root.windowMoving;
++                if (d.currentItem) {
++                    updateCurrentItemFromPosition(Qt.point(mouse.x, mouse.y))
++                }
+             }
+         }
+ 

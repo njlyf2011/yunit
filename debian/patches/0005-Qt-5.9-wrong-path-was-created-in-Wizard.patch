@@ -1,0 +1,23 @@
+From: John Salatas <jsalatas@gmail.com>
+Date: Thu, 3 Aug 2017 23:35:37 -0700
+Subject: Qt 5.9: wrong path was created in Wizard
+
+---
+ plugins/Wizard/System.cpp | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/plugins/Wizard/System.cpp b/plugins/Wizard/System.cpp
+index 7599abc..c17cc5a 100644
+--- a/plugins/Wizard/System.cpp
++++ b/plugins/Wizard/System.cpp
+@@ -59,7 +59,9 @@ void System::setWizardEnabled(bool enabled)
+     if (enabled) {
+         QFile::remove(wizardEnabledPath());
+     } else {
+-        QDir(wizardEnabledPath()).mkpath(QStringLiteral(".."));
++        QDir dir(wizardEnabledPath());
++        dir.cdUp();
++        dir.mkpath(".");
+         QFile(wizardEnabledPath()).open(QIODevice::WriteOnly);
+         m_fsWatcher.addPath(wizardEnabledPath());
+         Q_EMIT wizardEnabledChanged();

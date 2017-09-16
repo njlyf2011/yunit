@@ -1,0 +1,22 @@
+From: John Salatas <jsalatas@gmail.com>
+Date: Fri, 4 Aug 2017 20:04:59 -0700
+Subject: Qt 5.9: Touch point ids
+
+Touch point ids are now unique even between different devices. As a consequence of that, you cannot anymore assume that QTouchEvent::TouchPoint::id has the same value as given by the native platform nor the same value as given by synthesized touch points.
+---
+ tests/plugins/Ubuntu/Gestures/tst_TouchGate.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tests/plugins/Ubuntu/Gestures/tst_TouchGate.cpp b/tests/plugins/Ubuntu/Gestures/tst_TouchGate.cpp
+index 1fb79ea..8607ef5 100644
+--- a/tests/plugins/Ubuntu/Gestures/tst_TouchGate.cpp
++++ b/tests/plugins/Ubuntu/Gestures/tst_TouchGate.cpp
+@@ -366,7 +366,7 @@ void tst_TouchGate::disabledWhileHoldingTouch()
+         // it got only the new touch point.
+         QSharedPointer<QTouchEvent> touchEvent = testItem->touchEventsReceived[0];
+         QCOMPARE(touchEvent->touchPoints().count(), 1);
+-        QCOMPARE(touchEvent->touchPoints()[0].id(), 1);
++        QCOMPARE(touchEvent->touchPoints()[0].id(), TouchRegistry::uid(device, 0));
+     }
+ }
+ 

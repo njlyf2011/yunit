@@ -1,0 +1,21 @@
+From: John Salatas <jsalatas@gmail.com>
+Date: Tue, 8 Aug 2017 13:31:31 -0700
+Subject: Qt 5.9: fixed PhysicalKeysMapper test
+
+---
+ tests/qmltests/Components/tst_PhysicalKeysMapper.qml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tests/qmltests/Components/tst_PhysicalKeysMapper.qml b/tests/qmltests/Components/tst_PhysicalKeysMapper.qml
+index 27a5d07..0fab138 100644
+--- a/tests/qmltests/Components/tst_PhysicalKeysMapper.qml
++++ b/tests/qmltests/Components/tst_PhysicalKeysMapper.qml
+@@ -73,7 +73,7 @@ Item {
+         function init() {
+             Powerd.setStatus(Powerd.On, Powerd.Unknown);
+             loader.active = true;
+-            tryCompare(loader.status == Loader.Ready);
++            compare(loader.status, Loader.Ready);
+             inputCatcher.pressedKeys = [];
+             inputCatcher.releasedKeys = [];
+         }

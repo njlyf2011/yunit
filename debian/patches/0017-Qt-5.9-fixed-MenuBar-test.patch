@@ -1,0 +1,182 @@
+From: John Salatas <jsalatas@gmail.com>
+Date: Sat, 16 Sep 2017 15:13:48 -0700
+Subject: Qt 5.9: fixed MenuBar test
+
+---
+ tests/qmltests/ApplicationMenus/tst_MenuBar.qml | 45 +++++++++++++++++++++++--
+ 1 file changed, 42 insertions(+), 3 deletions(-)
+
+diff --git a/tests/qmltests/ApplicationMenus/tst_MenuBar.qml b/tests/qmltests/ApplicationMenus/tst_MenuBar.qml
+index 7d0c525..f72237f 100644
+--- a/tests/qmltests/ApplicationMenus/tst_MenuBar.qml
++++ b/tests/qmltests/ApplicationMenus/tst_MenuBar.qml
+@@ -92,11 +92,13 @@ Item {
+             menuBackend.modelData = appMenuData.generateTestData(5,5,2,3, "menu")
+             activatedSpy.clear();
+             waitForRendering(menuBar);
++            wait(200)
+         }
+ 
+         function test_mouseNavigation() {
+             menuBackend.modelData = appMenuData.generateTestData(3,3,0,0, "menu");
+-            wait(50) // wait for row to build
++            waitForRendering(menuBar);
++            wait(200) // wait for row to build
+             var priv = findInvisibleChild(menuBar, "d");
+ 
+             var menuItem0 = findChild(menuBar, "menuBar-item0"); verify(menuItem0);
+@@ -105,25 +107,30 @@ Item {
+ 
+             menuItem0.show();
+             mouseMove(menuItem0, menuItem0.width/2, menuItem0.height/2);
++            wait(200)
+             compare(priv.currentItem, menuItem0, "CurrentItem should be set to item 0");
+             compare(priv.currentItem.popupVisible, true, "Popup should be visible");
+ 
+             mouseMove(menuItem1, menuItem1.width/2, menuItem1.height/2);
+-            tryCompare(priv, "currentItem", menuItem1, undefined, "CurrentItem should have moved to item 1");
++            wait(200)
++            tryCompare(priv , "currentItem", menuItem1, undefined, "CurrentItem should have moved to item 1");
+             compare(menuItem1.popupVisible, true, "Popup should be visible");
+ 
+             mouseMove(menuItem2, menuItem2.width/2, menuItem2.height/2);
++            wait(200)
+             tryCompare(priv, "currentItem", menuItem2, undefined, "CurrentItem should have moved to item 2");
+             compare(menuItem2.popupVisible, true, "Popup should be visible");
+ 
+             mouseMove(menuItem0, menuItem0.width/2, menuItem0.height/2);
++            wait(200)
+             tryCompare(priv, "currentItem", menuItem0, undefined, "CurrentItem should have moved to item 0");
+             compare(menuItem0.popupVisible, true, "Popup should be visible");
+         }
+ 
+         function test_aboutToShow() {
+             menuBackend.modelData = appMenuData.generateTestData(3,3,0,0, "menu");
+-            wait(50) // wait for row to build
++            waitForRendering(menuBar);
++            wait(200) // wait for row to build
+             var priv = findInvisibleChild(menuBar, "d");
+ 
+             var menuItem0 = findChild(menuBar, "menuBar-item0");
+@@ -160,6 +167,9 @@ Item {
+ 
+         function test_keyboardNavigation_RightKeySelectsNextMenuItem(data) {
+             menuBackend.modelData = appMenuData.generateTestData(3,3,0,0, "menu");
++            waitForRendering(menuBar);
++            wait(200)
++
+             var priv = findInvisibleChild(menuBar, "d");
+ 
+             var menuItem0 = findChild(menuBar, "menuBar-item0"); verify(menuItem0);
+@@ -185,6 +195,9 @@ Item {
+ 
+         function test_keyboardNavigation_LeftKeySelectsPreviousMenuItem(data) {
+             menuBackend.modelData = appMenuData.generateTestData(3,3,0,0, "menu");
++            waitForRendering(menuBar);
++            wait(200)
++
+             var priv = findInvisibleChild(menuBar, "d");
+ 
+             var menuItem0 = findChild(menuBar, "menuBar-item0"); verify(menuItem0);
+@@ -217,6 +230,9 @@ Item {
+ 
+         function test_mnemonics(data) {
+             menuBackend.modelData = appMenuData.generateTestData(3,3,0,0,"menu");
++            waitForRendering(menuBar);
++            wait(200)
++
+             var priv = findInvisibleChild(menuBar, "d");
+ 
+             var menuItem = findChild(menuBar, data.expectedItem); verify(menuItem);
+@@ -231,12 +247,15 @@ Item {
+             modelData[1].rowData.sensitive = false;
+             menuBackend.modelData = modelData;
+ 
++            waitForRendering(menuBar);
++            wait(200)
+             var priv = findInvisibleChild(menuBar, "d");
+ 
+             var menuItem0 = findChild(menuBar, "menuBar-item0"); verify(menuItem0);
+             var menuItem2 = findChild(menuBar, "menuBar-item2"); verify(menuItem2);
+ 
+             menuItem0.show();
++            waitForRendering(menuItem0)
+             compare(menuItem0.popupVisible, true, "Popup should be visible");
+ 
+             keyClick(Qt.Key_Right);
+@@ -252,6 +271,9 @@ Item {
+ 
+         function test_menuActivateClosesMenu() {
+             menuBackend.modelData = appMenuData.generateTestData(3,3,0,0,"menu");
++            waitForRendering(menuBar);
++            wait(200)
++
+             var priv = findInvisibleChild(menuBar, "d");
+ 
+             var menuItem = findChild(menuBar, "menuBar-item0");
+@@ -266,6 +288,9 @@ Item {
+ 
+         function test_subMenuActivateClosesMenu() {
+             menuBackend.modelData = appMenuData.generateTestData(3,4,1,0,"menu");
++            waitForRendering(menuBar);
++            wait(200)
++
+             var priv = findInvisibleChild(menuBar, "d");
+ 
+             var menuItem = findChild(menuBar, "menuBar-item0");
+@@ -286,6 +311,9 @@ Item {
+         }
+ 
+         function test_openAppMenuShortcut() {
++            waitForRendering(menuBar);
++            wait(200)
++
+             var priv = findInvisibleChild(menuBar, "d");
+ 
+             var menuItem0 = findChild(menuBar, "menuBar-item0"); verify(menuItem0);
+@@ -300,6 +328,9 @@ Item {
+ 
+         function test_clickOpenMenuClosesMenu() {
+             menuBackend.modelData = appMenuData.generateTestData(3,3,0,0,"menu");
++            waitForRendering(menuBar);
++            wait(200)
++
+             var priv = findInvisibleChild(menuBar, "d");
+ 
+             var menuItem = findChild(menuBar, "menuBar-item0");
+@@ -315,6 +346,8 @@ Item {
+ 
+         function test_overfow() {
+             menuBackend.modelData = appMenuData.generateTestData(5,2,0,0,"menu");
++            waitForRendering(menuBar);
++            wait(200)
+ 
+             var overflow = findChild(menuBar, "overflow");
+             compare(overflow.visible, false, "Overflow should not be visible");
+@@ -334,6 +367,7 @@ Item {
+             var menuItem = findChild(menuBar, "overflow-menu-item0-actionItem");
+             waitForRendering(menuItem);
+             mouseClick(menuItem);
++            wait(25);
+ 
+             verify(findChild(menuBar, "overflow-menu-item0-menu-item0-actionItem"));
+ 
+@@ -349,6 +383,9 @@ Item {
+ 
+         function test_stray_submenus() {
+             menuBackend.modelData = appMenuData.generateTestData(3,4,1,0,"menu");
++            waitForRendering(menuBar);
++            wait(200)
++
+             var priv = findInvisibleChild(menuBar, "d");
+ 
+             var menuItem = findChild(menuBar, "menuBar-item0");
+@@ -376,6 +413,8 @@ Item {
+             var data = appMenuData.generateTestData(10,5,2,3);
+             data[0].submenu[1].submenu[0].rowData.sensitive = false;
+             menuBackend.modelData = data;
++            waitForRendering(menuBar);
++            wait(200)
+ 
+             var menuItem = findChild(menuBar, "menuBar-item0");
+             menuItem.show();

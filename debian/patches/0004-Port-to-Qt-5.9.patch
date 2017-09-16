@@ -1,0 +1,148 @@
+From: John Salatas <jsalatas@gmail.com>
+Date: Sun, 23 Jul 2017 14:43:18 -0700
+Subject: Port to Qt 5.9
+
+---
+ plugins/Dash/listviewwithpageheader.cpp                      | 4 ++--
+ plugins/Dash/listviewwithpageheader.h                        | 2 +-
+ plugins/Dash/verticaljournal.cpp                             | 4 ++--
+ plugins/Dash/verticaljournal.h                               | 2 +-
+ tests/plugins/Ubuntu/Gestures/GestureTest.cpp                | 2 +-
+ tests/plugins/Ubuntu/Gestures/tst_TouchGate.cpp              | 2 +-
+ tests/plugins/Utils/ModelTest.cpp                            | 2 +-
+ tests/qmltests/Components/tst_DragHandle.cpp                 | 4 ++--
+ tests/utils/modules/Unity/Test/TouchEventSequenceWrapper.cpp | 2 +-
+ 9 files changed, 12 insertions(+), 12 deletions(-)
+
+diff --git a/plugins/Dash/listviewwithpageheader.cpp b/plugins/Dash/listviewwithpageheader.cpp
+index e480e03..57430ce 100644
+--- a/plugins/Dash/listviewwithpageheader.cpp
++++ b/plugins/Dash/listviewwithpageheader.cpp
+@@ -1141,9 +1141,9 @@ void ListViewWithPageHeader::contentYAnimationRunningChanged(bool running)
+     }
+ }
+ 
+-void ListViewWithPageHeader::itemGeometryChanged(QQuickItem *item, const QRectF &newGeometry, const QRectF &oldGeometry)
++void ListViewWithPageHeader::itemGeometryChanged(QQuickItem *item, QQuickGeometryChange, const QRectF &oldGeometry)
+ {
+-    const qreal heightDiff = newGeometry.height() - oldGeometry.height();
++    const qreal heightDiff = item->height() - oldGeometry.height();
+     if (heightDiff != 0) {
+         if (!m_visibleItems.isEmpty()) {
+             ListItem *firstItem = m_visibleItems.first();
+diff --git a/plugins/Dash/listviewwithpageheader.h b/plugins/Dash/listviewwithpageheader.h
+index 5d860ac..cf5ec5e 100644
+--- a/plugins/Dash/listviewwithpageheader.h
++++ b/plugins/Dash/listviewwithpageheader.h
+@@ -116,7 +116,7 @@ protected:
+     void viewportMoved(Qt::Orientations orient) override;
+     qreal minYExtent() const override;
+     qreal maxYExtent() const override;
+-    void itemGeometryChanged(QQuickItem *item, const QRectF &newGeometry, const QRectF &oldGeometry) override;
++    void itemGeometryChanged(QQuickItem *item, QQuickGeometryChange geometryChange, const QRectF &) override;
+     void itemImplicitHeightChanged(QQuickItem *item) override;
+     void updatePolish() override;
+ 
+diff --git a/plugins/Dash/verticaljournal.cpp b/plugins/Dash/verticaljournal.cpp
+index 61be5ae..3de101e 100644
+--- a/plugins/Dash/verticaljournal.cpp
++++ b/plugins/Dash/verticaljournal.cpp
+@@ -271,9 +271,9 @@ void VerticalJournal::processModelRemoves(const QVector<QQmlChangeSet::Change> &
+     }
+ }
+ 
+-void VerticalJournal::itemGeometryChanged(QQuickItem * /*item*/, const QRectF &newGeometry, const QRectF &oldGeometry)
++void VerticalJournal::itemGeometryChanged(QQuickItem *item, QQuickGeometryChange, const QRectF &oldGeometry)
+ {
+-    const qreal heightDiff = newGeometry.height() - oldGeometry.height();
++    const qreal heightDiff = item->height() - oldGeometry.height();
+     if (heightDiff != 0) {
+         relayout();
+     }
+diff --git a/plugins/Dash/verticaljournal.h b/plugins/Dash/verticaljournal.h
+index 61c35cf..fd7609d 100644
+--- a/plugins/Dash/verticaljournal.h
++++ b/plugins/Dash/verticaljournal.h
+@@ -66,7 +66,7 @@ public:
+     void setColumnWidth(qreal columnWidth);
+ 
+ protected:
+-    void itemGeometryChanged(QQuickItem *item, const QRectF &newGeometry, const QRectF &oldGeometry) override;
++    void itemGeometryChanged(QQuickItem *item, QQuickGeometryChange geometryChange, const QRectF &) override;
+ 
+ Q_SIGNALS:
+     void columnWidthChanged();
+diff --git a/tests/plugins/Ubuntu/Gestures/GestureTest.cpp b/tests/plugins/Ubuntu/Gestures/GestureTest.cpp
+index 6e4302b..d069c01 100644
+--- a/tests/plugins/Ubuntu/Gestures/GestureTest.cpp
++++ b/tests/plugins/Ubuntu/Gestures/GestureTest.cpp
+@@ -108,7 +108,7 @@ void GestureTest::sendTouch(qint64 timestamp, int id, QPointF pos,
+     QCoreApplication::sendEvent(m_view, &touchEvent);
+ 
+     QQuickWindowPrivate *windowPrivate = QQuickWindowPrivate::get(m_view);
+-    windowPrivate->flushDelayedTouchEvent();
++    windowPrivate->flushFrameSynchronousEvents();
+ }
+ 
+ void GestureTest::passTime(qint64 timeSpanMs)
+diff --git a/tests/plugins/Ubuntu/Gestures/tst_TouchGate.cpp b/tests/plugins/Ubuntu/Gestures/tst_TouchGate.cpp
+index a16bef4..1fb79ea 100644
+--- a/tests/plugins/Ubuntu/Gestures/tst_TouchGate.cpp
++++ b/tests/plugins/Ubuntu/Gestures/tst_TouchGate.cpp
+@@ -191,7 +191,7 @@ void tst_TouchGate::holdsEventsUntilGainsOwnership()
+     if (!ownershipAfterTouchEnd) {
+         touchRegistry->removeCandidateOwnerForTouch(0, candidateItem);
+         QQuickWindowPrivate *wp = QQuickWindowPrivate::get(testItem->window());
+-        wp->flushDelayedTouchEvent();
++        wp->flushFrameSynchronousEvents();
+         // TouchGate should now open its flood gates and let testItem get all
+         // events from touch 0 produced so far
+         QCOMPARE(testItem->touchEventsReceived.count(), 2);
+diff --git a/tests/plugins/Utils/ModelTest.cpp b/tests/plugins/Utils/ModelTest.cpp
+index afb0cb3..2cd6c82 100644
+--- a/tests/plugins/Utils/ModelTest.cpp
++++ b/tests/plugins/Utils/ModelTest.cpp
+@@ -441,7 +441,7 @@ void ModelTest::data()
+     QVariant textAlignmentVariant = model->data ( model->index ( 0, 0 ), Qt::TextAlignmentRole );
+     if ( textAlignmentVariant.isValid() ) {
+         int alignment = textAlignmentVariant.toInt();
+-        QCOMPARE( alignment, ( alignment & ( Qt::AlignHorizontal_Mask | Qt::AlignVertical_Mask ) ) );
++        QCOMPARE( alignment, static_cast<int>( alignment & ( Qt::AlignHorizontal_Mask | Qt::AlignVertical_Mask ) ) );
+     }
+ 
+     // General Purpose roles that should return a QColor
+diff --git a/tests/qmltests/Components/tst_DragHandle.cpp b/tests/qmltests/Components/tst_DragHandle.cpp
+index 4db9f96..39e9b9c 100644
+--- a/tests/qmltests/Components/tst_DragHandle.cpp
++++ b/tests/qmltests/Components/tst_DragHandle.cpp
+@@ -179,7 +179,7 @@ void tst_DragHandle::flickAndHold(QQuickItem *dragHandle,
+     QTest::touchEvent(m_view, m_device).release(0, touchPoint.toPoint());
+ 
+     QQuickWindowPrivate *windowPrivate = QQuickWindowPrivate::get(m_view);
+-    windowPrivate->flushDelayedTouchEvent();
++    windowPrivate->flushFrameSynchronousEvents();
+ }
+ 
+ void tst_DragHandle::drag(QPointF &touchPoint, const QPointF& direction, qreal distance,
+@@ -194,7 +194,7 @@ void tst_DragHandle::drag(QPointF &touchPoint, const QPointF& direction, qreal d
+         m_fakeTimeSource->m_msecsSinceReference += timeStep;
+         QTest::touchEvent(m_view, m_device).move(0, touchPoint.toPoint());
+ 
+-        windowPrivate->flushDelayedTouchEvent();
++        windowPrivate->flushFrameSynchronousEvents();
+     }
+ }
+ 
+diff --git a/tests/utils/modules/Unity/Test/TouchEventSequenceWrapper.cpp b/tests/utils/modules/Unity/Test/TouchEventSequenceWrapper.cpp
+index 65da201..60e0abc 100644
+--- a/tests/utils/modules/Unity/Test/TouchEventSequenceWrapper.cpp
++++ b/tests/utils/modules/Unity/Test/TouchEventSequenceWrapper.cpp
+@@ -34,7 +34,7 @@ void TouchEventSequenceWrapper::commit(bool processEvents)
+ 
+     if (window) {
+         QQuickWindowPrivate *wp = QQuickWindowPrivate::get(window);
+-        wp->flushDelayedTouchEvent();
++        wp->flushFrameSynchronousEvents();
+     }
+ }
+ 

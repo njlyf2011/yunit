@@ -1,0 +1,25 @@
+From: John Salatas <jsalatas@gmail.com>
+Date: Tue, 22 Aug 2017 19:37:33 -0700
+Subject: Qt 5.9: fixed Carousel test
+
+---
+ tests/qmltests/Components/tst_Carousel.qml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/tests/qmltests/Components/tst_Carousel.qml b/tests/qmltests/Components/tst_Carousel.qml
+index a174883..03ce353 100644
+--- a/tests/qmltests/Components/tst_Carousel.qml
++++ b/tests/qmltests/Components/tst_Carousel.qml
+@@ -252,9 +252,11 @@ Item {
+             var stepAnimation = findInvisibleChild(carouselList, "stepAnimation");
+             var stepDiff = 0;
+             stepAnimation.onRunningChanged.connect(function() { if (stepAnimation.running) stepDiff = Math.abs(carouselList.contentX - stepAnimation.to); })
++
+             var overshootOnce = false;
+             while (!overshootOnce) {
+-                overshootOnce = carouselList.realContentX > carouselList.realContentWidth - carouselList.realWidth;
++                // This is bullshit :(
++                overshootOnce = carouselList.realContentX > carouselList.realContentWidth - carouselList.realWidth ? true : false;
+                 mouseFlick(carousel, carousel.width - units.gu(1),
+                                             carousel.height / 2,
+                                             units.gu(2),

@@ -1,0 +1,69 @@
+From: John Salatas <jsalatas@gmail.com>
+Date: Sat, 16 Sep 2017 15:15:11 -0700
+Subject: Qt 5.9: fixed Shell test
+
+---
+ tests/qmltests/tst_Shell.qml | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
+
+diff --git a/tests/qmltests/tst_Shell.qml b/tests/qmltests/tst_Shell.qml
+index 3cb3d63..2a0b361 100644
+--- a/tests/qmltests/tst_Shell.qml
++++ b/tests/qmltests/tst_Shell.qml
+@@ -1737,12 +1737,12 @@ Rectangle {
+ 
+             // Move the mosue over tile 2 and verify the close button becomes visible
+             var x = 0;
+-            var y = shell.height * .5;
++            var y = shell.height * .3;
+             mouseMove(shell, x, y)
+             while (spreadItem.highlightedIndex !== 2 && x <= 4000) {
+                 x+=10;
+                 mouseMove(shell, x, y)
+-                wait(0); // spin the loop so bindings get evaluated
++                wait(1); // spin the loop so bindings get evaluated
+             }
+             tryCompare(closeMouseArea, "enabled", true)
+ 
+@@ -1825,7 +1825,7 @@ Rectangle {
+             while (x <= shell.width) {
+                 x+=10;
+                 mouseMove(shell, x, y)
+-                wait(0); // spin the loop so bindings get evaluated
++                wait(1); // spin the loop so bindings get evaluated
+             }
+             tryCompare(spreadFlickable, "contentX", spreadFlickable.contentWidth - spreadFlickable.width);
+ 
+@@ -1833,7 +1833,7 @@ Rectangle {
+             while (x > 0) {
+                 x-=10;
+                 mouseMove(shell, x, y)
+-                wait(0); // spin the loop so bindings get evaluated
++                wait(1); // spin the loop so bindings get evaluated
+             }
+             tryCompare(spreadFlickable, "contentX", 0);
+ 
+@@ -2590,6 +2590,7 @@ Rectangle {
+                 mouseMove(panel, panel.width/2, panel.panelHeight/2); // to reveal the menus
+                 var menuBarLoader = findInvisibleChild(panel, "menuBarLoader");
+                 verify(menuBarLoader);
++                wait(100);
+                 tryCompare(menuBarLoader.item, "visible", true);
+                 mouseDrag(panel, panel.width/2, panel.height/2, 0, shell.height/3, Qt.LeftButton, Qt.NoModifier, 500);
+             } else {
+@@ -3181,6 +3182,7 @@ Rectangle {
+             mouseMove(panel, panel.width/2, panel.panelHeight/2); // to reveal the menus
+             var menuBarLoader = findInvisibleChild(panel, "menuBarLoader");
+             verify(menuBarLoader);
++            wait(100);
+             tryCompare(menuBarLoader.item, "visible", true);
+ 
+             // place a phone call
+@@ -3195,6 +3197,7 @@ Rectangle {
+ 
+             // menu bar should be revealed
+             tryCompare(menuBarLoader, "active", true);
++            wait(100);
+             tryCompare(menuBarLoader.item, "visible", true);
+         }
+ 

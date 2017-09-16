@@ -1,0 +1,20 @@
+From: John Salatas <jsalatas@gmail.com>
+Date: Sat, 19 Aug 2017 18:42:34 -0700
+Subject: Qt 5.9: touchflick in UnityTestCase
+
+---
+ tests/utils/modules/Unity/Test/UnityTestCase.qml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/tests/utils/modules/Unity/Test/UnityTestCase.qml b/tests/utils/modules/Unity/Test/UnityTestCase.qml
+index d78468b..b0cf37e 100644
+--- a/tests/utils/modules/Unity/Test/UnityTestCase.qml
++++ b/tests/utils/modules/Unity/Test/UnityTestCase.qml
+@@ -363,6 +363,7 @@ TestCase {
+             event.release(0 /* touchId */, rootTo.x, rootTo.y)
+             event.commit()
+         }
++        wait(5)
+     }
+ 
+     // perform a drag in the given direction until the given condition is true
