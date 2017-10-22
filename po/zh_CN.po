@@ -6,18 +6,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: unity\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2017-03-28 21:50+0000\n"
-"PO-Revision-Date: 2017-04-15 19:20+0800\n"
-"Last-Translator: NJLYF2011 <njlyf2011@hotmail.com>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-15 17:29-0700\n"
+"PO-Revision-Date: 2017-10-22 20:20+0800\n"
+"Last-Translator: njlyf2011 <njlyf2011@hotmail.com>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:23+0000\n"
-"X-Generator: Poedit 1.8.11\n"
-"Language: zh_CN\n"
+"X-Generator: Poedit 2.0.4\n"
 
 #: plugins/LightDM/Greeter.cpp:188
 msgid "Password: "
@@ -43,11 +43,11 @@ msgstr "登录"
 msgid "Retry"
 msgstr "重试"
 
-#: plugins/LightDM/UsersModel.cpp:152
+#: plugins/LightDM/UsersModel.cpp:157
 msgid "Login"
 msgstr "登录"
 
-#: plugins/LightDM/UsersModel.cpp:160
+#: plugins/LightDM/UsersModel.cpp:165
 msgid "Guest Session"
 msgstr "来宾会话"
 
@@ -85,7 +85,8 @@ msgstr "退出"
 
 #: qml/Components/Dialogs.qml:199 qml/Components/Dialogs.qml:264
 #: qml/Dash/DashPageHeader.qml:324 qml/Greeter/NarrowView.qml:208
-#: qml/Wizard/Pages/passcode-confirm.qml:32 qml/Wizard/Pages/passcode-set.qml:32
+#: qml/Wizard/Pages/passcode-confirm.qml:32
+#: qml/Wizard/Pages/passcode-set.qml:32
 msgid "Cancel"
 msgstr "取消"
 
@@ -134,8 +135,8 @@ msgid "Keyboard Shortcuts"
 msgstr "键盘快捷键"
 
 #: qml/Components/KeyboardShortcutsOverlay.qml:55
-msgid "Unity 8"
-msgstr "Unity 8"
+msgid "Yunit"
+msgstr ""
 
 #: qml/Components/KeyboardShortcutsOverlay.qml:62
 msgid "PrtScr"
@@ -143,7 +144,7 @@ msgstr "PrtScr"
 
 #: qml/Components/KeyboardShortcutsOverlay.qml:67
 msgid "Takes a screenshot."
-msgstr "截图。"
+msgstr "获取当前窗口的屏幕截图。"
 
 #: qml/Components/KeyboardShortcutsOverlay.qml:75
 msgid "Alt + PrtScr"
@@ -335,11 +336,11 @@ msgstr "应用中可能有未保存数据:"
 msgctxt ""
 "Re-dock means connect the device again to an external screen/mouse/keyboard"
 msgid "Re-dock, save your work and close these apps to continue."
-msgstr "重新连接，保存你的工作并关闭这些应用并继续。"
+msgstr "重新连接，保存你的工作，关闭这些应用并继续。"
 
 #: qml/Components/ModeSwitchWarningDialog.qml:67
 msgid "Or force close now (unsaved data will be lost)."
-msgstr "或者立即强制关闭（未保存的数据将丢失）。"
+msgstr "或者现在强制关闭（未保存的数据将丢失）。"
 
 #: qml/Components/ModeSwitchWarningDialog.qml:80
 msgid "OK, I will reconnect"
@@ -347,7 +348,7 @@ msgstr "好的，我就重新连接"
 
 #: qml/Components/ModeSwitchWarningDialog.qml:81
 msgid "Reconnect now!"
-msgstr "即刻重新连接！"
+msgstr "现在重新连接！"
 
 #: qml/Components/ModeSwitchWarningDialog.qml:94
 msgid "Close all"
@@ -362,23 +363,24 @@ msgid ""
 "Your device is now connected to an external display. Use this screen as a "
 "touch pad to interact with the pointer."
 msgstr ""
-"你的设备现在已经连接到一个外部显示。将这个屏幕当作一块触控板使用来与指针互动。"
+"你的设备现在已经连接到一个外部显示设备，将这个屏幕当作一块触控板使用来与指针"
+"互动。"
 
 #: qml/Components/VirtualTouchPad.qml:327
 msgid "Tap left button to click."
-msgstr ""
+msgstr "轻按左键继续"
 
 #: qml/Components/VirtualTouchPad.qml:339
 msgid "Tap right button to right click."
-msgstr ""
+msgstr "轻按右键继续"
 
 #: qml/Components/VirtualTouchPad.qml:351
 msgid "Swipe with two fingers to scroll."
-msgstr ""
+msgstr "用两根手指滑动"
 
 #: qml/Components/VirtualTouchPad.qml:396
 msgid "Find more settings in the system settings."
-msgstr ""
+msgstr "在系统设置中寻找更多设置"
 
 #: qml/Dash/DashPageHeader.qml:361
 msgctxt "Button: Open the Ubuntu Store"
@@ -487,7 +489,7 @@ msgstr "设备锁定"
 
 #: qml/Greeter/DelayedLockscreen.qml:58
 msgid "You have been locked out due to too many failed passphrase attempts."
-msgstr "您因太多失败的口令密语尝试而被锁定。"
+msgstr "您因太多失败的密语尝试而被锁定。"
 
 #: qml/Greeter/DelayedLockscreen.qml:59
 msgid "You have been locked out due to too many failed passcode attempts."
@@ -513,7 +515,7 @@ msgstr "输入密码解锁"
 
 #: qml/Greeter/NarrowView.qml:228
 msgid "Emergency"
-msgstr "紧急"
+msgstr "紧急呼叫"
 
 #: qml/Greeter/PromptList.qml:126
 msgid "Passphrase"
@@ -523,15 +525,15 @@ msgstr "密码是"
 msgid "Passcode"
 msgstr "密码"
 
-#: qml/Greeter/SessionsList.qml:122
+#: qml/Greeter/SessionsList.qml:124
 msgid "Select desktop environment"
 msgstr "选择桌面环境"
 
-#: qml/Launcher/Drawer.qml:93
+#: qml/Launcher/Drawer.qml:94
 msgid "Search…"
 msgstr "搜索..."
 
-#: qml/Launcher/Drawer.qml:128
+#: qml/Launcher/Drawer.qml:129
 msgctxt "Apps sorted alphabetically"
 msgid "A-Z"
 msgstr ""
@@ -590,7 +592,7 @@ msgstr "排队中..."
 
 #: qml/Panel/Indicators/IndicatorMenuItemFactory.qml:1021
 msgid "Downloading"
-msgstr "正在下载"
+msgstr "下载中"
 
 #: qml/Panel/Indicators/IndicatorMenuItemFactory.qml:1023
 msgid "Paused, tap to resume"
@@ -781,7 +783,7 @@ msgstr "帮助我们改进"
 
 #: qml/Wizard/Pages/75-report-check.qml:59
 msgid "Improve system performance by sending us crashes and error reports."
-msgstr "向我们发送崩溃和错误报告来提高系统性能。"
+msgstr "向我们发送崩溃和错误报告来改善系统状况。"
 
 #: qml/Wizard/Pages/75-report-check.qml:60
 msgid "Privacy policy"
@@ -813,8 +815,8 @@ msgid ""
 "collects information about nearby cell towers and Wi-Fi hotspots around your "
 "current location whenever your position is being found."
 msgstr ""
-"为提供定位服务并提高服务质量，每当你的位置被发现时，HERE会收集你周围的有关手机"
-"信号塔和 WLAN 热点的信息。"
+"为提供定位服务并提高服务质量，每当你的位置被发现时，HERE会收集你周围的有关手"
+"机信号塔和 WLAN 热点的信息。"
 
 #: qml/Wizard/Pages/here-terms.qml:93
 msgid ""
@@ -853,7 +855,8 @@ msgstr "锁屏密码"
 msgid "Enter 4 numbers to setup your passcode"
 msgstr "输入 4 个数字来设置你的密码"
 
-#: qml/Wizard/Pages/passcode-desktop.qml:77 qml/Wizard/Pages/passcode-set.qml:54
+#: qml/Wizard/Pages/passcode-desktop.qml:77
+#: qml/Wizard/Pages/passcode-set.qml:54
 msgid "Choose passcode"
 msgstr "选择密码"
 
@@ -899,7 +902,7 @@ msgstr "SIM 卡已添加"
 
 #: qml/Wizard/Pages/sim.qml:55
 msgid "You must restart the device to access the mobile network."
-msgstr "你必须重启设备才能访问移动网络"
+msgstr "你必须重启设备才能访问移动网络。"
 
 #: qml/Wizard/Pages/sim.qml:59
 msgid "Restart"
@@ -911,7 +914,7 @@ msgstr "没有 SIM 卡你将不能拨打电话或使用短信。"
 
 #: qml/Wizard/Pages/sim.qml:90
 msgid "To proceed with no SIM tap Skip."
-msgstr "点击跳过继续无 SIM 卡"
+msgstr "点击跳过继续无 SIM 卡。"
 
 #: qml/Wizard/PasswordMeter.qml:87
 msgid "Password too short"
@@ -940,6 +943,9 @@ msgstr "密码强度：较弱"
 #: qml/Wizard/PasswordMeter.qml:101
 msgid "Very weak password"
 msgstr "密码强度：非常弱"
+
+#~ msgid "Unity 8"
+#~ msgstr "Unity 8"
 
 #~ msgid "Confirm"
 #~ msgstr "确认"
@@ -1029,8 +1035,8 @@ msgstr "密码强度：非常弱"
 #~ msgstr "对不起，密语不正确"
 
 #~ msgid ""
-#~ "If passcode is entered incorrectly, your phone will conduct a factory reset "
-#~ "and all personal data will be deleted."
+#~ "If passcode is entered incorrectly, your phone will conduct a factory "
+#~ "reset and all personal data will be deleted."
 #~ msgstr ""
 #~ "如果输入的密码不正确，您的手机将恢复到出厂设置并且所有的个人数据将被删除。"
 
@@ -1202,7 +1208,7 @@ msgstr "密码强度：非常弱"
 #~ "您的手机设置为自动向操作系统的制造商Canonical 及其合作伙伴发送错误报告。"
 
 #~ msgid "Nice work!"
-#~ msgstr "干得好！"
+#~ msgstr "干得漂亮！"
 
 #~ msgid "All done"
 #~ msgstr "大功告成"
@@ -1214,8 +1220,8 @@ msgstr "密码强度：非常弱"
 #~ msgstr "您的手机现在可以使用了。"
 
 #~ msgid ""
-#~ "By selecting this option you agree to the Nokia HERE <a href='#'>terms and "
-#~ "conditions</a>."
+#~ "By selecting this option you agree to the Nokia HERE <a href='#'>terms "
+#~ "and conditions</a>."
 #~ msgstr "选择这个选项表示你同意 Nokia HERE <a href='#'>条款声明</a>。"
 
 #~ msgid "Confirm passphrase"
